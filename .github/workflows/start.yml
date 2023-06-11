@@ -47,4 +47,4 @@ jobs:
       - name: pull and run
         run: |
           docker pull laitielly/knapsack01:latest
-          docker run knapsack01:latest
+          docker run laitielly/knapsack01:latest
