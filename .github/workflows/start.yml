@@ -35,10 +35,24 @@ jobs:
         run: |
           pip install pylint==2.17.4
           pylint --disable=R,C main.py
+          
+      - name: Docker Login
+        uses: docker/login-action@v2.2.0
+        with:
+          username: ${{ secrets.USERNAME_HUB }}
+          password: ${{ secrets.PASSED_HUB }}
+    
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4.1.0
+        with:
+          context: .
+          file: ./Dockerfile.txt
+          push: true
+          tags: /knapsack01:latest
 
       # Runs a single command using the runners shell
-      - name: lets find knapsack
-        run: python main.py
+#       - name: lets find knapsack
+#         run: python main.py
         
 #       - name: Upload a Build Artifact
 #         uses: actions/upload-artifact@v3.1.2
