@@ -124,7 +124,7 @@ start_time = time.time()
 a = Knapsack(weights_knap, profits_knap, capacity_knap)
 results = a.calculate(20, 150, 10, 0.3)
 
-with open("outs.txt", "w", encoding="utf-8") as file:
-    file.write(f"Time: {round(time.time() - start_time, 6)}\nTotal weight: {get_weight(results[0], weights_knap)}\n")
-    file.write(f"Total profit: {results[1]}\nID of items: {results[0]}\n")
+with open("outs.txt", "w", encoding="utf-8") as out_file:
+    out_file.write(f"Time: {round(time.time() - start_time, 6)}\nTotal weight: {get_weight(results[0], weights_knap)}\n")
+    out_file.write(f"Total profit: {results[1]}\nID of items: {results[0]}\n")
 
