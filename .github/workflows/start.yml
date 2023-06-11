@@ -30,14 +30,10 @@ jobs:
         run: |
           pip install -r requirements.txt
           
-      - name: Python Linter
-        uses: sunnysid3up/python-linter@master
-        with:
-          source: "src"
-          mypy-options: "--ignore-missing-imports --show-error-codes"
-          pylint-options: "--rcfile=setup.cfg"
-          isort-options: "-w 100"
-          django: true      
+      - name: pylint
+        run: |
+          sudo apt-get install pylint
+          pylint
 
       # Runs a single command using the runners shell
       - name: Run py file
@@ -52,5 +48,15 @@ jobs:
 #           path: main.py
 
 #           retention-days: 1
+
+#   lint:
+
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     - uses: actions/checkout@v1
+#     - uses: ricardochaves/python-lint@test
+    
+#     - name: main.py
 
 
