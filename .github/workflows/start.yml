@@ -32,8 +32,8 @@ jobs:
           
       - name: pylint
         run: |
-          sudo apt-get install pylint
-          pylint
+          pip install pylint
+          pylint --disable=R,C main.py
 
       # Runs a single command using the runners shell
       - name: Run py file
