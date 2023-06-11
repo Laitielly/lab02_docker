@@ -17,6 +17,10 @@ class Knapsack:
         self.n = len(weight)
         self.opt = 0
         self.opt_target = 0
+        self.genes = []
+        self.target = []
+        self.n_samples = 0
+        self.mutation_proba = 0
 
     def fitness(self) -> None:
         self.target = [0 for i in range(self.n_samples)]
@@ -68,21 +72,13 @@ class Knapsack:
         self.target[mx_i] = -1
         return mx_i
 
-    def calculate(self, n_samples: int, max_iters: int, n_cross: int, mutation_proba: float = 0.01) -> tuple[
-        list[int], int]:
-        '''
-        Функция возвращает список, кодирующий оптимальное решение и значение целевой функции.
-        # Параметры:
-        - n_samples - количество генов
-        - max_iters - максимальное количество иттераций
-        - n_cross - количество скрещиваний в каждой иттерации
-        - mutation_proba - вероятность мутации
-        '''
+    def calculate(self, n_samples: int, max_iters: int, n_cross: int, mutation_proba: float = 0.01) -> tuple[list[int], int]:
+
         self.n_samples = n_samples
         self.mutation_proba = mutation_proba
         max_value = (1 << self.n)
         self.genes = [randint(0, max_value) for i in range(n_samples)]
-        for iter in range(max_iters):
+        for iterator in range(max_iters):
             self.fitness()
             for cross in range(n_cross):
                 i = self.selection(self.n_samples//4)
@@ -106,20 +102,20 @@ def get_weight(id:list, weights:list) -> float:
 
 
 def get_knapsack() -> tuple:
-    capacity_knap = 0
-    weights_knap = []
-    profits_knap = []
+    capacity = 0
+    weights = []
+    profits = []
 
-    with open('test/p01_c.txt', 'r') as file:
-        capacity_knap = [int(line.rstrip()) for line in file][0]
+    with open('test/p01_c.txt', 'r', encoding="utf-8") as file:
+        capacity = [int(line.rstrip()) for line in file][0]
 
-    with open('test/p01_p.txt', 'r') as file:
-        profits_knap = [int(line.rstrip()) for line in file]
+    with open('test/p01_p.txt', 'r', encoding="utf-8") as file:
+        profits = [int(line.rstrip()) for line in file]
 
-    with open('test/p01_w.txt', 'r') as file:
-        weights_knap = [int(line.rstrip()) for line in file]
+    with open('test/p01_w.txt', 'r', encoding="utf-8") as file:
+        weights = [int(line.rstrip()) for line in file]
 
-    return capacity_knap, profits_knap, weights_knap
+    return capacity, profits, weights
 
 
 capacity_knap, profits_knap, weights_knap = get_knapsack()
