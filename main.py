@@ -78,9 +78,9 @@ class Knapsack:
         self.mutation_proba = mutation_proba
         max_value = (1 << self.n)
         self.genes = [randint(0, max_value) for i in range(n_samples)]
-        for iterator in range(max_iters):
+        for _iterator in range(max_iters):
             self.fitness()
-            for cross in range(n_cross):
+            for _cross in range(n_cross):
                 i = self.selection(self.n_samples//4)
                 j = self.selection(self.n_samples//4)
                 self.genes[i], self.genes[j] = \
@@ -93,10 +93,10 @@ class Knapsack:
         return solution, self.opt_target
 
 
-def get_weight(id:list, weights:list) -> float:
+def get_weight(ids: list, weights: list) -> float:
     weight = 0
-    for i in range(len(id)):
-        weight += (id[i] * weights[i])
+    for i in range(len(ids)):
+        weight += (ids[i] * weights[i])
 
     return weight
 
