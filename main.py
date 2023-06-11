@@ -128,3 +128,5 @@ with open("outs.txt", "w", encoding="utf-8") as out_file:
     out_file.write(f"Time: {round(time.time() - start_time, 6)}\nTotal weight: {get_weight(results[0], weights_knap)}\n")
     out_file.write(f"Total profit: {results[1]}\nID of items: {results[0]}\n")
 
+print(f"Time: {round(time.time() - start_time, 6)}\nTotal weight: {get_weight(results[0], weights_knap)}")
+print(f"Total profit: {results[1]}\nID of items: {results[0]}")
