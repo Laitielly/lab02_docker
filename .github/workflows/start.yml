@@ -10,7 +10,8 @@ jobs:
   
   build:
     
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
+#     self-hosted
 
     steps:
       - uses: actions/checkout@v3
@@ -37,6 +38,13 @@ jobs:
           push: true
           tags: laitielly/knapsack01:latest
 
-#   myRunner:
-#     runs-on: self-hosted
-
+  localrun:
+    needs: build
+    runs-on: self-hosted
+    
+    steps:
+      - uses: actions/checkout@v3
+      - name: pull and run
+        run: |
+          docker pull laitielly/knapsack01:latest
+          docker run -it knapsack01:latest
