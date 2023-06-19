@@ -78,7 +78,7 @@ class Knapsack:
         self.mutation_proba = mutation_proba
         max_value = (1 << self.n)
         self.genes = [randint(0, max_value) for i in range(n_samples)]
-        for _iterator in range(max_iters):
+        for iterator in range(max_iters):
             self.fitness()
             for _cross in range(n_cross):
                 i = self.selection(self.n_samples//4)
